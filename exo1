@@ -1,0 +1,41 @@
+    a. démarrer un pod redis basé sur l'image redis:6-alpine
+
+        kubectl run redis --image=redis:6-alpine
+
+    b. obtenir les logs de ce pod
+       
+        kubectl logs po/redis
+
+    c. exécuter la un client redis sur ce pod
+
+        kubectl exec -it po/redis -- sh
+
+    d. supprimer ce pod
+
+      kubectl delete po/redis
+
+    e. créer un deployment de 2 replicas basé sur l'image httpd:2.4-alpine
+
+    kubectl create deployment apache --image=httpd:2.4-alpine --replicas=2
+   
+    f. lister les pods
+
+       kubectl get po
+       
+    g. décrire l'un des pods (replicas)
+     
+        kubectl describe po/apache-6b64b7486f-btmnf
+        
+    h. exposer le deployment depuis l'extérieur du cluster
+
+          kubectl expose deployment apache --type=NodePort --port=80
+    
+    i. lister les services
+
+        kubectl get svc
+
+    j. supprimer le service et le deployment
+    
+    kubectl delete deploy/appache svc/apache
+
+     
