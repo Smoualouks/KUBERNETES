@@ -1,0 +1,15 @@
+---
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: hello2
+spec:
+  # pod template
+  template:
+    spec:
+      containers:
+        - name: hello
+          image: hello-world
+          restartPullPolicy: IfNotPresent
+      restartPolicy: Never
+    backoffLimitt: 4

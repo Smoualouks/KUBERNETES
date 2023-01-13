@@ -1,0 +1,28 @@
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mariadb
+  labels:
+    app: mariadb
+spec:
+  containers:
+    - name: mariadb
+      image: mariadb:10.5
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: azerty
+        - name: MYSQL_DATABASE
+          value: projet1
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mariadb # utilisé en résolution DNS
+spec:
+  type: ClusterIP # connectivité interne seulement (type par défaut)
+  selector:
+    app: mariadb
+  ports:
+    - port: 3306
+      targetPort: 3306

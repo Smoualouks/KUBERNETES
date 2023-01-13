@@ -1,0 +1,17 @@
+---
+# par défaut, un pod s'éxecute indefiniment (de façon continue)
+# par défaut le restart policy d'un pod est "always"
+#------------------------------------------
+kind: Pod
+apiVersion: v1
+metadata:
+  name: hello
+spec:
+  containers:
+    - name: hello
+      image:
+        hello-world
+        # par défaut, imagePullPolicy vaut Always, l'image est retélécharger systématiquement
+      imagePullPolicy: IfNotPresent
+  #restartPolicy: Always
+  #backoffLimitt: 4

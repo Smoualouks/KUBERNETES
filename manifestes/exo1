@@ -8,11 +8,11 @@
 
     c. exécuter la un client redis sur ce pod
 
-        kubectl exec -it po/redis -- sh
+        kubectl exec -it po/redis -c redis -- redis-cli
 
     d. supprimer ce pod
 
-      kubectl delete po/redis
+      kubectl delete pod/redis
 
     e. créer un deployment de 2 replicas basé sur l'image httpd:2.4-alpine
 
@@ -29,6 +29,7 @@
     h. exposer le deployment depuis l'extérieur du cluster
 
           kubectl expose deployment apache --type=NodePort --port=80
+          kubectl expose deployment httpd --type=LoadBalancer --port=80
     
     i. lister les services
 
