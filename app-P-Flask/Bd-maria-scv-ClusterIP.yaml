@@ -3,6 +3,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: mariadb
+  Namespace: exo3
   labels:
     app: mariadb
 spec:
@@ -11,14 +12,25 @@ spec:
       image: mariadb:10.5
       env:
         - name: MYSQL_ROOT_PASSWORD
-          value: azerty
+          #value: azerty
+          valueFrom:
+            secretKeyRef:
+              name: db-password
+              key: db-password
+
         - name: MYSQL_DATABASE
           value: projet1
+        - name: TOTO
+          valueFrom:
+            ConfigMapKeyRef:
+              name: db-config
+              key: toto
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: mariadb # utilisé en résolution DNS
+  Namespace: exo3
 spec:
   type: ClusterIP # connectivité interne seulement (type par défaut)
   selector:
